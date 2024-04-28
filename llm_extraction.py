@@ -164,9 +164,9 @@ def build_message(model, tokenizer, device, user_prompt, assistant_prompt, email
                 final_prediction = ''
         email_out_list.append([name, email,final_prediction, email_pred_list,res_list])
 
-        if(i % 5 == 1):
-            #pprint(cur_msg)
-            save_prediction_to_csv(email_out_list,save_path)
+        # if(i % 5 == 1):
+        #     #pprint(cur_msg)
+        #     save_prediction_to_csv(email_out_list,save_path)
     return email_out_list
 
 def parse_res(res,target, num_msg):
@@ -211,8 +211,10 @@ if __name__ == '__main__':
     user_prompt = read_prompt_data(args.user_prompt_path)
     assistant_prompt = read_prompt_data(args.assistant_prompt_path)
     
-    data_path_list = ['data/university_phone.json']
-    pred_path_list = ['results_llama2/university_phone_pred']
+    # data_path_list = ['data/university_phone.json']
+    data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
+    # pred_path_list = ['results/university_phone_pred']
+    pred_path_list = ['results/university_email_pred','results/university_phone_pred','results/enron_email_pred']
     # models = ["meta-llama/Llama-2-7b-hf","lmsys/vicuna-7b-v1.5","meta-llama/Llama-2-7b-chat-hf",
     #           'lmsys/vicuna-7b-v1.3','TheBloke/guanaco-7B-HF']
     models = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
@@ -224,13 +226,12 @@ if __name__ == '__main__':
         model.to(device)
         model.eval()
         for i, data_path_i in enumerate(data_path_list):
-            data_path = 'data/university_phone.json'
-            email_list = read_json(data_path)
+            email_list = read_json(data_path_i)
             target = 'email'
-            if('phone' in data_path):
+            if('phone' in data_path_i):
                 target = 'phone'
             for p in ['DQ','JQ+COT']:
-                print(f'{model_path}----:{data_path} with prompt type: {p} and target: {target}')
+                print(f'{model_path}----:{data_path_i} with prompt type: {p} and target: {target}')
                 save_path = pred_path_list[i] + f'_{p}' + f'_{model_path.replace("/","-")}' +'.csv'
                 email_out_list = build_message(model, tokenizer, device, user_prompt, assistant_prompt, email_list, args,prompt_type = p,target= target, num_msg=1)
                 save_prediction_to_csv(email_out_list,save_path)

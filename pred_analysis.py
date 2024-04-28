@@ -318,17 +318,18 @@ if __name__ == '__main__':
                         default=6)
     args = parser.parse_args()
 
-    data_path_list = ['data/university_phone.json']
-    # data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
-    pred_path_list = ['results_llama2/university_phone_pred']
-    # pred_path_list = ['results_llama2/university_email_pred','results_llama2/university_phone_pred','results_llama2/enron_email_pred']
-    model_list = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+    # data_path_list = ['data/university_phone.json']
+    data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
+    # pred_path_list = ['results/university_phone_pred']
+    pred_path_list = ['results/university_email_pred','results/university_phone_pred','results/enron_email_pred']
     # model_list = ["meta-llama/Llama-2-7b-hf", 'meta-llama/Llama-2-7b-chat-hf', 'lmsys/vicuna-7b-v1.3','lmsys/vicuna-7b-v1.5','TheBloke/guanaco-7B-HF']
+    model_list = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+
     for i, data_path in enumerate(pred_path_list):
         result_path = data_path
 
         target = 'email'
-        if('phone' in args.result_path):
+        if('phone' in result_path):
             target = 'phone'
         prompt_type_list = ['DQ','JQ+COT']
         for model_path in model_list:
