@@ -318,11 +318,12 @@ if __name__ == '__main__':
                         default=6)
     args = parser.parse_args()
 
-    data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
-    pred_path_list = ['results_llama2/university_email_pred','results_llama2/university_phone_pred','results_llama2/enron_email_pred']
+    data_path_list = ['data/university_phone.json']
+    # data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
     pred_path_list = ['results_llama2/university_phone_pred']
-    #model_list = ['lmsys/vicuna-7b-v1.5','TheBloke/guanaco-7B-HF']
-    model_list = ["meta-llama/Llama-2-7b-hf", 'meta-llama/Llama-2-7b-chat-hf', 'lmsys/vicuna-7b-v1.3','lmsys/vicuna-7b-v1.5','TheBloke/guanaco-7B-HF']
+    # pred_path_list = ['results_llama2/university_email_pred','results_llama2/university_phone_pred','results_llama2/enron_email_pred']
+    model_list = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+    # model_list = ["meta-llama/Llama-2-7b-hf", 'meta-llama/Llama-2-7b-chat-hf', 'lmsys/vicuna-7b-v1.3','lmsys/vicuna-7b-v1.5','TheBloke/guanaco-7B-HF']
     for i, data_path in enumerate(pred_path_list):
         result_path = data_path
 
