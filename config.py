@@ -6,10 +6,10 @@ assistant_prompt_path = 'prompts/prompt_assistant.txt'
 
 ### paths for email or phones pairs
 university_path = 'data/enron_top100_email.json'
-university_pred_path = 'path_to_store/pred'
+university_pred_path = 'pred'
 
-llm_data_path = 'xxx'
-llm_pred_path = 'xxx'
+llm_data_path = 'data/enron_top100_email.json'
+llm_pred_path = 'pred'
 ### used for result analysis (.py)
 result_path = 'results_enron_phone_MC_update/'
 

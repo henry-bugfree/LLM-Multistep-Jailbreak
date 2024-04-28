@@ -211,11 +211,12 @@ if __name__ == '__main__':
     user_prompt = read_prompt_data(args.user_prompt_path)
     assistant_prompt = read_prompt_data(args.assistant_prompt_path)
     
-    data_path_list = [ 'data/university_phone.json']
+    data_path_list = ['data/university_phone.json']
     pred_path_list = ['results_llama2/university_phone_pred']
-    models = ["meta-llama/Llama-2-7b-hf","lmsys/vicuna-7b-v1.5","meta-llama/Llama-2-7b-chat-hf",
-              'lmsys/vicuna-7b-v1.3','TheBloke/guanaco-7B-HF']
-    
+    # models = ["meta-llama/Llama-2-7b-hf","lmsys/vicuna-7b-v1.5","meta-llama/Llama-2-7b-chat-hf",
+    #           'lmsys/vicuna-7b-v1.3','TheBloke/guanaco-7B-HF']
+    models = ["lmsys/vicuna-7b-v1.5"]
+
     for model_path in models:
         device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         model = AutoModelForCausalLM.from_pretrained(model_path)
