@@ -319,11 +319,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # data_path_list = ['data/university_phone.json']
-    data_path_list = ['data/university.json', 'data/university_phone.json','data/enron_top100_email.json']
+    data_path_list = ['data/enron_top100_email.json', 'enron_emails_sampled.json', 'data/enron_phone.json','data/university_phone_50.json','data/university.json']
     # pred_path_list = ['results/university_phone_pred']
-    pred_path_list = ['results/university_email_pred','results/university_phone_pred','results/enron_email_pred']
+    pred_path_list = ['results/enron_top100_email_pred','results/enron_emails_sampled_pred','results/enron_phone_pred','results/university_phone_50_pred','results/university_pred']
     # model_list = ["meta-llama/Llama-2-7b-hf", 'meta-llama/Llama-2-7b-chat-hf', 'lmsys/vicuna-7b-v1.3','lmsys/vicuna-7b-v1.5','TheBloke/guanaco-7B-HF']
-    model_list = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+    model_list = ["TinyLlama/TinyLlama-1.1B-Chat-v1.0", "EleutherAI/gpt-neo-125m"]
 
     for i, data_path in enumerate(pred_path_list):
         result_path = data_path
@@ -331,7 +331,7 @@ if __name__ == '__main__':
         target = 'email'
         if('phone' in result_path):
             target = 'phone'
-        prompt_type_list = ['DQ','JQ+COT']
+        prompt_type_list = ['DQ','JQ+COT','JQ+COT+MC']
         for model_path in model_list:
 
             for p in prompt_type_list:
